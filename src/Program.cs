@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Sample
 {
@@ -13,9 +16,12 @@ namespace Sample
                 .AddCommandLine(args)
                 .Build();
 
-                var connectionString = Configuration.GetConnectionString("cds");
+            var serviceProvider = new ServiceCollection()
+                .AddDbContext<CdsContext>(options => options.UseSqlServer(Configuration.GetConnectionString("cds")))
+                .AddSingleton<App, App>()
+                .BuildServiceProvider();
 
-                Console.ReadKey();
+            serviceProvider.GetService<App>().Run();
         }
     }
 }
