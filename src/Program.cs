@@ -12,16 +12,15 @@ namespace Sample
         {
             IConfiguration Configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddEnvironmentVariables()
-                .AddCommandLine(args)
+                .AddUserSecrets<Program>()
                 .Build();
 
             var serviceProvider = new ServiceCollection()
                 .AddDbContext<CdsContext>(options => options.UseSqlServer(Configuration.GetConnectionString("cds")))
-                .AddSingleton<App, App>()
+                .AddSingleton<IApp, App>()
                 .BuildServiceProvider();
 
-            serviceProvider.GetService<App>().Run();
+            serviceProvider.GetService<IApp>().Run();
         }
     }
 }

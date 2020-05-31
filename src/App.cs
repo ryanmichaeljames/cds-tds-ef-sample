@@ -3,7 +3,12 @@ using System.Linq;
 
 namespace Sample
 {
-    public class App
+    public interface IApp
+    {
+        void Run();
+    }
+
+    public class App : IApp
     {
         private readonly CdsContext _cdsContext;
 
