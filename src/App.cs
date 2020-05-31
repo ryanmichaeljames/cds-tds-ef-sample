@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace Sample
+namespace CdsEfSampleApp
 {
     public interface IApp
     {

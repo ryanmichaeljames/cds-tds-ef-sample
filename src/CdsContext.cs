@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Sample
+namespace CdsEfSampleApp
 {
     public class CdsContext : DbContext
     {

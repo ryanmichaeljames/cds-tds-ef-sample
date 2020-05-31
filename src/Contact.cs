@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Sample
+namespace CdsEfSampleApp
 {
     [Table("contact")]
     public class Contact
